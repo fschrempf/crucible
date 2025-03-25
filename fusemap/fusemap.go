@@ -26,6 +26,7 @@ type FuseMap struct {
 	Gaps      map[string]*Gap      `json:"gaps"`
 
 	WordSize  int
+	NVMEMWordSize  int
 
 	valid bool
 }
@@ -68,7 +69,7 @@ func (f *FuseMap) SetAddress(reg *Register) (err error) {
 		return fmt.Errorf("register word cannot exceed %d", f.BankSize-1)
 	}
 
-	reg.ReadAddress = uint32((reg.Bank*f.BankSize + reg.Word) * f.WordSize)
+	reg.ReadAddress = uint32((reg.Bank*f.BankSize + reg.Word) * f.NVMEMWordSize)
 	reg.WriteAddress = reg.ReadAddress
 
 	return
@@ -135,7 +136,7 @@ func (f *FuseMap) Validate() (err error) {
 		return errors.New("missing reference")
 	}
 
-	f.WordSize, err = f.driverParams()
+	f.WordSize, f.NVMEMWordSize, err = f.driverParams()
 
 	if err != nil {
 		return
