@@ -20,6 +20,9 @@ func (f *FuseMap) driverParams() (wordSize int, nvmemWordSize int, err error) {
 	case "nvmem-imx-ocotp":
 		wordSize = 4
 		nvmemWordSize = 4
+	case "nvmem-imx-ocotp-ele":
+		wordSize = 4
+		nvmemWordSize = 1
 	case "":
 		err = errors.New("missing driver")
 	default:

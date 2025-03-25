@@ -1,0 +1,535 @@
+---
+# crucible
+# One-Time-Programmable (OTP) fusing tool
+#
+# Copyright (c) WithSecure Corporation
+# Copyright (c) Kontron Electronics GmbH
+#
+# Use of this source code is governed by the license
+# that can be found in the LICENSE file.
+
+# i.MX 93 Applications Processors Reference Manual
+# IMX93RM Rev. 5, 05/2024
+# i.MX 93 Applications Processor Security Reference Manual
+# IMX93RM Rev. 2, 04/2023
+#
+processor: IMX93
+reference: 5
+
+driver: nvmem-imx-ocotp-ele
+bank_size: 8
+
+registers:
+  OCOTP_BOOT_CFG0:
+    bank: 3
+    word: 0
+    fuses:
+      BOOT_MODE:
+        offset: 0
+        len: 4
+      OVERRIDE_FLEXSPI_BT_SEL:
+        offset: 4
+        len: 1
+      OVERRIDE_FLEXSPI_BT_SEL_VAL:
+        offset: 5
+        len: 2
+      FLEXSPI_NAND_4K_PAGE:
+        offset: 7
+        len: 1
+      USDHC_DEVICE_TYPE:
+        offset: 8
+        len: 1
+      FLEXSPI_NOR_DATA_IOMUX_SION_EN:
+        offset: 9
+        len: 1
+      FLEXSPI_NOR_FCP_OFFSET:
+        offset: 10
+        len: 2
+      FLEXSPI_AUTO_PROBE_FREQ:
+        offset: 12
+        len: 3
+      FLEXSPI_FCB_COPY_FLAG:
+        offset: 15
+        len: 1
+      SD_LOOPBACK_CLK_SOURCE:
+        offset: 16
+        len: 1
+      SD_SPEED:
+        offset: 17
+        len: 2
+      EMMC_SPEED:
+        offset: 19
+        len: 1
+      EMMC_FAST_BT:
+        offset: 20
+        len: 1
+      USDHC_VOL_SEL:
+        offset: 22
+        len: 1
+      FLEXSPI_NOR_RESET_PIN:
+        offset: 23
+        len: 5
+      BT_FREQ_SEL:
+        offset: 28
+        len: 1
+      BT_FUSE_SEL:
+        offset: 29
+        len: 1
+      FORCE_BT_FROM_FUSE:
+        offset: 30
+        len: 1
+      FORCE_SERIAL_DOWNLOAD:
+        offset: 31
+        len: 1
+
+  OCOTP_BOOT_CFG1:
+    bank: 3
+    word: 1
+    fuses:
+      EMMC_FAST_BT_ACK:
+        offset: 0
+        len: 1
+      USDHC_PWR_POLARITY:
+        offset: 2
+        len: 1
+      USDHC_PWR_DELAY:
+        offset: 3
+        len: 1
+      USDHC_PWR_INTERVAL:
+        offset: 4
+        len: 2
+      SD_CALI_STEP:
+        offset: 6
+        len: 2
+      USDHC_OVRD_PAD_SETTING_LOW:
+        offset: 8
+        len: 8
+      USDHC_OVRD_PAD_SETTING_HIGH:
+        offset: 16
+        len: 4
+      USDHC_PWR_EN:
+        offset: 20
+        len: 1
+      USDHC_OVERRIDE_PAD_SETTINGS:
+        offset: 21
+        len: 1
+      USDHC_DLL_EN:
+        offset: 22
+        len: 1
+      SDMMC_DLL_DLY:
+        offset: 24
+        len: 7
+      USDHC_DLL_SEL:
+        offset: 31
+        len: 1
+
+  OCOTP_BOOT_CFG2:
+    bank: 3
+    word: 2
+    fuses:
+      FLEXSPI_NAND_COL_ADDR_WIDTH:
+        offset: 0
+        len: 2
+      FLEXSPI_NAND_CS_INTERVAL:
+        offset: 2
+        len: 2
+      FLEXSPI_NAND_SEARCH_CNT:
+        offset: 4
+        len: 2
+      FLEXSPI_NAND_SEARCH_STRIDE:
+        offset: 6
+        len: 2
+      FLEXSPI_DLL_VAL:
+        offset: 8
+        len: 8
+      SPI_CLK_DAT_PHASE_CTRL:
+        offset: 16
+        len: 1
+      SPI_SCLK_POLARITY:
+        offset: 17
+        len: 1
+      SPI_SS_POLARITY:
+        offset: 18
+        len: 1
+      RECOVERY_SPI_ADDR_LEN:
+        offset: 19
+        len: 1
+      FLEXSPI_NOR_AUTO_PROBE_EN:
+        offset: 20
+        len: 1
+      FLEXSPI_NAND_BUSY_BIT_OFFSET_OVRD:
+        offset: 21
+        len: 3
+      RECOVERY_SPI_CS_SEL:
+        offset: 24
+        len: 1
+      RECOVERY_SPI_PORT_SEL:
+        offset: 26
+        len: 2
+      FLEXSPI_DUMMY_CYCLE_SEL:
+        offset: 28
+        len: 4
+
+  OCOTP_BOOT_CFG3:
+    bank: 3
+    word: 3
+    fuses:
+      FLEXSPI_NOR_RST_PIN_SEL:
+        offset: 24
+        len: 3
+      FLEXSPI_NOR_AUTO_PROBE_TYPE:
+        offset: 27
+        len: 2
+
+  OCOTP_BOOT_CFG4:
+    bank: 3
+    word: 4
+
+  OCOTP_BOOT_CFG5:
+    bank: 3
+    word: 5
+
+  OCOTP_BOOT_CFG6:
+    bank: 3
+    word: 6
+
+  OCOTP_BOOT_CFG7:
+    bank: 3
+    word: 7
+
+  OCOTP_BOOT_CFG8:
+    bank: 4
+    word: 0
+    fuses:
+      SECONDARY_BOOT_OFFSET:
+        offset: 8
+        len: 8
+      A55_DCACHE_DIS:
+        offset: 16
+        len: 1
+      M33_DCACHE_DIS:
+        offset: 17
+        len: 1
+      USB2_SDP_DIS:
+        offset: 18
+        len: 1
+      A55_SPI_RECOVERY_DIS:
+        offset: 19
+        len: 1
+      M33_SPI_RECOVERY_DIS:
+        offset: 20
+        len: 1
+      USB1_SDP_DIS:
+        offset: 21
+        len: 1
+      M33_WDOG_EN:
+        offset: 23
+        len: 1
+      A55_ICACHE_DIS:
+        offset: 24
+        len: 1
+      M33_ICACHE_DIS:
+        offset: 25
+        len: 1
+      WDOG_TIMEOUT_SELECT:
+        offset: 16
+        len: 2
+      A55_WDOG_EN:
+        offset: 18
+        len: 1
+      USB_HID_EP1_OUT_DIS:
+        offset: 19
+        len: 1
+      PLL_LATE_EN:
+        offset: 20
+        len: 1
+
+  OCOTP_SRK0:
+    bank: 16
+    word: 0
+    fuses:
+      CST_SRK_HASH:
+        offset: 0
+        len: 256
+      CST_SRK_HASH[255:224]:
+        offset: 0
+        len: 32
+  OCOTP_SRK1:
+    bank: 16
+    word: 1
+    fuses:
+      CST_SRK_HASH[223:192]:
+        offset: 0
+        len: 32
+  OCOTP_SRK2:
+    bank: 16
+    word: 2
+    fuses:
+      CST_SRK_HASH[191:160]:
+        offset: 0
+        len: 32
+  OCOTP_SRK3:
+    bank: 16
+    word: 3
+    fuses:
+      CST_SRK_HASH[159:128]:
+        offset: 0
+        len: 32
+  OCOTP_SRK4:
+    bank: 16
+    word: 4
+    fuses:
+      CST_SRK_HASH[127:96]:
+        offset: 0
+        len: 32
+  OCOTP_SRK5:
+    bank: 16
+    word: 5
+    fuses:
+      CST_SRK_HASH[95:64]:
+        offset: 0
+        len: 32
+  OCOTP_SRK6:
+    bank: 16
+    word: 6
+    fuses:
+      CST_SRK_HASH[63:32]:
+        offset: 0
+        len: 32
+  OCOTP_SRK7:
+    bank: 16
+    word: 7
+    fuses:
+      CST_SRK_HASH[31:0]:
+        offset: 0
+        len: 32
+
+  OCOTP_USB_ID:
+    bank: 39
+    word: 0
+    fuses:
+      USB_VID:
+        offset: 0
+        len: 16
+      USB1_PID:
+        offset: 16
+        len: 16
+
+  OCOTP_USB2_ID:
+    bank: 39
+    word: 1
+    fuses:
+      USB2_PID:
+        offset: 0
+        len: 16
+
+  OCOTP_MAC_ADDR0:
+    bank: 39
+    word: 3
+    fuses:
+      MAC_0_ADDR:
+        offset: 0
+        len: 48
+      MAC_0_ADDR[31:0]:
+        offset: 0
+        len: 32
+  OCOTP_MAC_ADDR1:
+    bank: 39
+    word: 4
+    fuses:
+      MAC_0_ADDR[47:32]:
+        offset: 0
+        len: 16
+      MAC_1_ADDR:
+        offset: 16
+        len: 48
+      MAC_1_ADDR[15:0]:
+        offset: 16
+        len: 16
+  OCOTP_MAC_ADDR2:
+    bank: 39
+    word: 5
+    fuses:
+      MAC_1_ADDR[47:16]:
+        offset: 0
+        len: 32
+
+  OCOTP_GP20:
+    bank: 47
+    word: 0
+    fuses:
+      GP2:
+        offset: 0
+        len: 256
+      GP2[31:0]:
+        offset: 0
+        len: 32
+  OCOTP_GP21:
+    bank: 47
+    word: 1
+    fuses:
+      GP2[63:32]:
+        offset: 0
+        len: 32
+  OCOTP_GP22:
+    bank: 47
+    word: 2
+    fuses:
+      GP2[95:64]:
+        offset: 0
+        len: 32
+  OCOTP_GP23:
+    bank: 47
+    word: 3
+    fuses:
+      GP2[127:96]:
+        offset: 0
+        len: 32
+  OCOTP_GP24:
+    bank: 47
+    word: 4
+    fuses:
+      GP2[159:128]:
+        offset: 0
+        len: 32
+  OCOTP_GP25:
+    bank: 47
+    word: 5
+    fuses:
+      GP2[191:160]:
+        offset: 0
+        len: 32
+  OCOTP_GP26:
+    bank: 47
+    word: 6
+    fuses:
+      GP2[223:192]:
+        offset: 0
+        len: 32
+  OCOTP_GP27:
+    bank: 47
+    word: 7
+    fuses:
+      GP2[255:224]:
+        offset: 0
+        len: 32
+
+  OCOTP_GP30:
+    bank: 48
+    word: 0
+    fuses:
+      GP3:
+        offset: 0
+        len: 256
+      GP3[31:0]:
+        offset: 0
+        len: 32
+  OCOTP_GP31:
+    bank: 48
+    word: 1
+    fuses:
+      GP3[63:32]:
+        offset: 0
+        len: 32
+  OCOTP_GP32:
+    bank: 48
+    word: 2
+    fuses:
+      GP3[95:64]:
+        offset: 0
+        len: 32
+  OCOTP_GP33:
+    bank: 48
+    word: 3
+    fuses:
+      GP3[127:96]:
+        offset: 0
+        len: 32
+  OCOTP_GP34:
+    bank: 48
+    word: 4
+    fuses:
+      GP3[159:128]:
+        offset: 0
+        len: 32
+  OCOTP_GP35:
+    bank: 48
+    word: 5
+    fuses:
+      GP3[191:160]:
+        offset: 0
+        len: 32
+  OCOTP_GP36:
+    bank: 48
+    word: 6
+    fuses:
+      GP3[223:192]:
+        offset: 0
+        len: 32
+  OCOTP_GP37:
+    bank: 48
+    word: 7
+    fuses:
+      GP3[255:224]:
+        offset: 0
+        len: 32
+
+  OCOTP_GP40:
+    bank: 49
+    word: 0
+    fuses:
+      GP4:
+        offset: 0
+        len: 256
+      GP4[31:0]:
+        offset: 0
+        len: 32
+  OCOTP_GP41:
+    bank: 49
+    word: 1
+    fuses:
+      GP4[63:32]:
+        offset: 0
+        len: 32
+  OCOTP_GP42:
+    bank: 49
+    word: 2
+    fuses:
+      GP4[95:64]:
+        offset: 0
+        len: 32
+  OCOTP_GP43:
+    bank: 49
+    word: 3
+    fuses:
+      GP4[127:96]:
+        offset: 0
+        len: 32
+  OCOTP_GP44:
+    bank: 49
+    word: 4
+    fuses:
+      GP4[159:128]:
+        offset: 0
+        len: 32
+  OCOTP_GP45:
+    bank: 49
+    word: 5
+    fuses:
+      GP4[191:160]:
+        offset: 0
+        len: 32
+  OCOTP_GP46:
+    bank: 49
+    word: 6
+    fuses:
+      GP4[223:192]:
+        offset: 0
+        len: 32
+  OCOTP_GP47:
+    bank: 49
+    word: 7
+    fuses:
+      GP4[255:224]:
+        offset: 0
+        len: 32
