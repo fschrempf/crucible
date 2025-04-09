@@ -46,7 +46,7 @@ func BlowNVMEM(devicePath string, f *fusemap.FuseMap, name string, val []byte) (
 		return
 	}
 
-	if f.Driver != "nvmem-imx-ocotp" {
+	if f.Driver != "nvmem-imx-ocotp" && f.Driver != "nvmem-imx-ocotp-fsb" {
 		err = errors.New("driver does not support blow operation")
 		return
 	}

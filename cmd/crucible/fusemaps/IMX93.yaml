@@ -16,7 +16,7 @@
 processor: IMX93
 reference: 5
 
-driver: nvmem-imx-ocotp-ele
+driver: nvmem-imx-ocotp-fsb
 bank_size: 8
 
 registers:
