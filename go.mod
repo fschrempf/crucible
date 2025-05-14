@@ -5,6 +5,7 @@ go 1.23.1
 require (
 	cloud.google.com/go/kms v1.20.0
 	cloud.google.com/go/security v1.18.1
+	dario.cat/mergo v1.0.0
 	github.com/ghodss/yaml v1.0.0
 	github.com/smallstep/pkcs7 v0.0.0-20240911091500-b1cae6277023
 	github.com/usbarmory/tamago v0.0.0-20240924114619-273d67cd811d

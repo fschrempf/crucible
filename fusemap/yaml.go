@@ -9,10 +9,12 @@
 package fusemap
 
 import (
+	"errors"
 	"fmt"
 	"io/fs"
 
 	"github.com/ghodss/yaml"
+	"dario.cat/mergo"
 )
 
 // Find searches a fusemap YAML file for a given processor and reference manual
@@ -27,7 +29,15 @@ func Find(dir fs.FS, processor string, reference string) (fusemap *FuseMap, err 
 		return
 	}
 
-	fusemap, err = Parse(y)
+	path = processor + ".override.yaml"
+
+	o, err := fs.ReadFile(dir, path)
+
+	if err != nil  && !errors.Is(err, fs.ErrNotExist) {
+		return
+	}
+
+	fusemap, err = Parse(y, o)
 
 	if err != nil {
 		return
@@ -46,12 +56,29 @@ func Find(dir fs.FS, processor string, reference string) (fusemap *FuseMap, err 
 }
 
 // Parse converts a fusemap YAML payload to a FuseMap structure.
-func Parse(y []byte) (fusemap *FuseMap, err error) {
+func Parse(y []byte, o []byte) (fusemap *FuseMap, err error) {
 	fusemap = &FuseMap{}
+	override := FuseMap{}
 	err = yaml.Unmarshal(y, fusemap)
 
 	if err != nil {
 		return
+	}
+
+	if o != nil {
+		err = yaml.Unmarshal(o, &override)
+
+		if err != nil {
+			return
+		}
+
+		err = mergo.Merge(&override, fusemap)
+
+		if err != nil {
+			return
+		}
+
+		*fusemap = override
 	}
 
 	err = fusemap.Validate()

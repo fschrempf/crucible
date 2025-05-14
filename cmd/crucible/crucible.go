@@ -176,7 +176,7 @@ func listFusemaps() {
 			return err
 		}
 
-		f, err := fusemap.Parse(y)
+		f, err := fusemap.Parse(y, nil)
 
 		if err != nil {
 			log.Printf("skipping %s (%v)", path, err)

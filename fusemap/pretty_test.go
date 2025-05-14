@@ -48,7 +48,7 @@ registers:
                       00  OTP1
 `
 
-	f, err := Parse([]byte(y))
+	f, err := Parse([]byte(y), nil)
 
 	if err != nil {
 		t.Fatal(err)
@@ -97,7 +97,7 @@ registers:
                                                                                               00  OTP1
 `
 
-	f, err := Parse([]byte(y))
+	f, err := Parse([]byte(y), nil)
 
 	if err != nil {
 		t.Fatal(err)

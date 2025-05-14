@@ -22,7 +22,7 @@ driver: nvmem-imx-ocotp
 ...
 `
 
-	_, err := Parse([]byte(y))
+	_, err := Parse([]byte(y), nil)
 
 	if err == nil || err.Error() != "missing reference" {
 		t.Error("fusemap with missing reference should raise an error")
@@ -42,7 +42,7 @@ reference: test
 ...
 `
 
-	_, err := Parse([]byte(y))
+	_, err := Parse([]byte(y), nil)
 
 	if err == nil || err.Error() != "missing driver" {
 		t.Error("fusemap with missing driver should raise an error")
@@ -59,7 +59,7 @@ registers:
 ...
 `
 
-	_, err = Parse([]byte(y))
+	_, err = Parse([]byte(y), nil)
 
 	if err == nil || err.Error() != "unsupported driver" {
 		t.Error("fusemap with unsupported driver should raise an error")
@@ -80,7 +80,7 @@ registers:
 ...
 `
 
-	_, err := Parse([]byte(y))
+	_, err := Parse([]byte(y), nil)
 
 	if err == nil || !(err.Error() == "register/fuse names must be unique, double entry for NAME1" || err.Error() == "register/fuse names must be unique, double entry for NAME2") {
 		t.Error("fusemap with duplicate register name should raise an error")
@@ -102,7 +102,7 @@ registers:
 ...
 `
 
-	_, err := Parse([]byte(y))
+	_, err := Parse([]byte(y), nil)
 
 	if err == nil || !(err.Error() != "register address must be unique, double entry for 0 (REG1)" || err.Error() != "register address must be unique, double entry for 0 (REG2)") {
 		t.Error("fusemap with duplicate register address should raise an error")
@@ -122,7 +122,7 @@ registers:
 ...
 `
 
-	_, err := Parse([]byte(y))
+	_, err := Parse([]byte(y), nil)
 
 	if err == nil || err.Error() != "register word cannot exceed 7" {
 		t.Error("fusemap with excessive word index should raise an error")
@@ -140,7 +140,7 @@ registers:
 ...
 `
 
-	_, err = Parse([]byte(y))
+	_, err = Parse([]byte(y), nil)
 
 	if err == nil || err.Error() != "register word cannot exceed 31" {
 		t.Error("fusemap with excessive word index should raise an error")
@@ -165,7 +165,7 @@ registers:
 ...
 `
 
-	_, err := Parse([]byte(y))
+	_, err := Parse([]byte(y), nil)
 
 	if err == nil || err.Error() != "fuse offset cannot exceed register length" {
 		t.Error("fusemap with excessive offset index should raise an error")
@@ -188,7 +188,7 @@ registers:
 ...
 `
 
-	_, err = Parse([]byte(y))
+	_, err = Parse([]byte(y), nil)
 
 	if err == nil || err.Error() != "fuse length cannot exceed 512" {
 		t.Error("fusemap with excessive word index should raise an error")
@@ -211,7 +211,7 @@ registers:
 ...
 `
 
-	_, err := Parse([]byte(y))
+	_, err := Parse([]byte(y), nil)
 
 	if err != nil {
 		t.Errorf("valid fusemap should not raise an error (%v)", err)
@@ -233,7 +233,7 @@ registers:
 ...
 `
 
-	fusemap, err := Parse([]byte(y))
+	fusemap, err := Parse([]byte(y), nil)
 
 	if err != nil {
 		t.Fatal(err)
@@ -290,7 +290,7 @@ registers:
 ...
 `
 
-	_, err := Parse([]byte(y))
+	_, err := Parse([]byte(y), nil)
 
 	if err == nil || err.Error() != "invalid gap register (REG3)" {
 		t.Error("fusemap with invalid gap register should raise an error")
@@ -314,7 +314,7 @@ registers:
 ...
 `
 
-	_, err = Parse([]byte(y))
+	_, err = Parse([]byte(y), nil)
 
 	if err == nil || err.Error() != "invalid gap, missing operation" {
 		t.Error("fusemap with invalid gap operation should raise an error")
@@ -338,7 +338,7 @@ registers:
 ...
 `
 
-	_, err = Parse([]byte(y))
+	_, err = Parse([]byte(y), nil)
 
 	if err == nil || err.Error() != "invalid gap, missing length" {
 		t.Error("fusemap with invalid gap length should raise an error")
@@ -371,7 +371,7 @@ registers:
 ...
 `
 
-	fusemap, err := Parse([]byte(y))
+	fusemap, err := Parse([]byte(y), nil)
 
 	if err != nil {
 		t.Fatal(err)

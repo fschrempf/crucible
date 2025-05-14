@@ -68,7 +68,7 @@ registers:
 ...
 `
 
-	f, err := fusemap.Parse([]byte(testYAML))
+	f, err := fusemap.Parse([]byte(testYAML), nil)
 
 	if err != nil {
 		t.Fatal(err)
@@ -108,7 +108,7 @@ registers:
 ...
 `
 
-	f, err := fusemap.Parse([]byte(testYAML))
+	f, err := fusemap.Parse([]byte(testYAML), nil)
 
 	if err != nil {
 		t.Fatal(err)
@@ -176,7 +176,7 @@ registers:
 ...
 `
 
-	f, err := fusemap.Parse([]byte(y))
+	f, err := fusemap.Parse([]byte(y), nil)
 
 	if err != nil {
 		t.Fatal(err)
@@ -249,7 +249,7 @@ registers:
 		nvram = append(nvram, 0xaa)
 	}
 
-	f, err := fusemap.Parse([]byte(y))
+	f, err := fusemap.Parse([]byte(y), nil)
 
 	if err != nil {
 		t.Fatal(err)
